@@ -1,0 +1,61 @@
+package com.natanmaia.veterinaria.config;
+
+import com.natanmaia.veterinaria.serialization.converter.YamlJackson2HttpMessageConverter;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.http.MediaType;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import java.util.List;
+
+@Configuration
+public class WebConfig implements WebMvcConfigurer {
+
+    private static final MediaType MEDIA_TYPE_YAML = MediaType.valueOf("application/x-yaml");
+
+    public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
+        converters.add(new YamlJackson2HttpMessageConverter());
+    }
+
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("*/**").
+                allowedMethods("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS", "HEAD", "TRACE", "CONNECT");
+    }
+
+    @Override
+    public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
+
+        // via extension
+        configurer.favorParameter(false).
+                ignoreAcceptHeader(false).
+                defaultContentType(MediaType.APPLICATION_JSON).
+                mediaType("json", MediaType.APPLICATION_JSON).
+                mediaType("x-yaml", MEDIA_TYPE_YAML).
+                mediaType("xml", MediaType.APPLICATION_XML);
+
+        // via header
+//        configurer.favorPathExtension(false).
+//                favorParameter(false).
+//                ignoreAcceptHeader(false).
+//                useRegisteredExtensionsOnly(false).
+//                defaultContentType(MediaType.APPLICATION_JSON).
+//                mediaType("json", MediaType.APPLICATION_JSON).
+//                mediaType("x-yaml", MEDIA_TYPE_YAML).
+//                mediaType("xml", MediaType.APPLICATION_XML);
+
+        // via query params
+//        configurer.favorPathExtension(false).
+//                favorParameter(false).
+//                parameterName("mediaType").
+//                ignoreAcceptHeader(true).
+//                useRegisteredExtensionsOnly(false).
+//                defaultContentType(MediaType.APPLICATION_JSON).
+//                mediaType("json", MediaType.APPLICATION_JSON).
+//                mediaType("x-yaml", MEDIA_TYPE_YAML).
+//                mediaType("xml", MediaType.APPLICATION_XML);
+    }
+
+
+}
