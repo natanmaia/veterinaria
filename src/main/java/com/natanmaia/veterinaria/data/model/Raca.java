@@ -1,5 +1,6 @@
 package com.natanmaia.veterinaria.data.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,6 +29,7 @@ public class Raca implements Serializable {
     private Especie especie;
 
     @OneToMany(mappedBy = "raca")
+    @JsonIgnore
     private List<Animal> animais;
 
 }
