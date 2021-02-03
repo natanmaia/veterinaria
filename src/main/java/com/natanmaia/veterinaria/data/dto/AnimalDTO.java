@@ -1,7 +1,6 @@
 package com.natanmaia.veterinaria.data.dto;
 
 import com.natanmaia.veterinaria.data.model.Animal;
-import com.natanmaia.veterinaria.data.model.Raca;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
