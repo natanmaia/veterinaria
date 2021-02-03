@@ -21,7 +21,7 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 @Api(value = "API Especie", tags = {"Especies"})
 @RestController
-@RequestMapping("/especie")
+@RequestMapping("/api/especie")
 public class EspecieController {
 
     @Autowired
