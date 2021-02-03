@@ -22,7 +22,7 @@ public class Animal implements Serializable {
     @Column(nullable = false)
     private String nome;
 
-    private String idade;
+    private Integer idade;
 
     @ManyToOne
     @JoinColumn(name = "id_raca")
