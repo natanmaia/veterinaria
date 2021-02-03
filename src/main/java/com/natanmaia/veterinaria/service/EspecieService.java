@@ -29,6 +29,7 @@ public class EspecieService {
                         new ResourceNotFoundException("Sem resultados para esse ID!"));
 
         entity.setNome(especie.getNome());
+        entity.setRacas(especie.getRacas());
 
         return DozerConverter.parseObject(repository.save(entity), EspecieVO.class);
     }
