@@ -1,9 +1,16 @@
 package com.natanmaia.veterinaria.data.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 @Entity
 public class Raca implements Serializable {
 
@@ -22,4 +29,5 @@ public class Raca implements Serializable {
 
     @OneToMany(mappedBy = "raca")
     private List<Animal> animais;
+
 }
