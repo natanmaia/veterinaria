@@ -3,6 +3,7 @@ package com.natanmaia.veterinaria.data.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.context.annotation.Lazy;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -24,5 +25,6 @@ public class Especie implements Serializable {
     private String nome;
 
     @OneToMany(mappedBy = "especie")
+    @Lazy
     private List<Raca> racas;
 }
